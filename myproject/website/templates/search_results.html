@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees Page</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    
+        th {
+            background-color: #f5f5f5;
+        }
+    
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }    
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+    
+        p {
+            margin: 20px 0;
+            font-size: 16px;
+            color: #888;
+        }
+        .error-message {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+            color: red;
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>      
+</head>
+<body>
+    <h1>These are the Details of the Employee Who's Id you Search</h1>
+    
+    {% if error %}
+        <p class="error-message">{{ error }}</p>
+    {% else %}
+        {% if results %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Salary</th>
+                        <th>Date of Joining</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for result in results %}
+                    <tr>
+                        <td>{{ result.id }}</td>
+                        <td>{{ result.Name }}</td>
+                        <td>{{ result.Age }}</td>
+                        <td>${{ result.Salary }}</td>
+                        <td>{{ result.DOJ }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5">No results found.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
+    {% endif %}    
+    <form action="{% url 'search' %}" method="GET">
+        <input type="text" name="query" placeholder="Search by ID...">
+        <button type="submit">Search</button>
+    </form>
+</body>
+</html>

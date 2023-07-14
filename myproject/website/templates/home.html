@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees Page</title>
+    <style>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+            }
+    
+            h1 {
+                text-align: center;
+                margin-top: 20px;
+            }
+    
+            form {
+                text-align: center;
+                margin-top: 20px;
+            }
+    
+            input[type="text"] {
+                padding: 10px;
+                width: 300px;
+                font-size: 16px;
+            }
+    
+            button[type="submit"] {
+                padding: 10px 20px;
+                font-size: 16px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                cursor: pointer;
+            }
+    
+            table {
+                margin: 20px auto;
+                border-collapse: collapse;
+                width: 80%;
+            }
+    
+            th, td {
+                padding: 10px;
+                text-align: left;
+            }
+    
+            th {
+                background-color: #4CAF50;
+                color: white;
+            }
+    
+            tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+    
+            tr:hover {
+                background-color: #ddd;
+            }
+    
+            p {
+                text-align: center;
+                margin-top: 20px;
+                font-size: 18px;
+                color: #888;
+            }
+    </style>
+</head>
+<body>
+    <h1>Employees Page</h1>
+
+    <form action="{% url 'search' %}" method="GET">
+        <input type="text" name="query" placeholder="Search by ID...">
+        <button type="submit">Search</button>
+    </form>
+    
+    {% if results %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                    <th>Date of Joining</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                <tr>
+                    <td>{{ result.id }}</td>
+                    <td>{{ result.name }}</td>
+                    <td>{{ result.age }}</td>
+                    <td>{{ result.salary }}</td>
+                    <td>{{ result.date_of_joining }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5">No results found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    {% endif %}
+</body>
+</html>
