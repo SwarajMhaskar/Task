@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Selected Row</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .no-row {
+            text-align: center;
+            font-style: italic;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>Selected Row's Information </h1>
+    <div class="container">
+        {% if selected_row %}
+            <p><strong>Employee ID:</strong> {{ selected_row.emp_id }}</p>
+            <p><strong>Name:</strong> {{ selected_row.name }}</p>
+            <p><strong>Email:</strong> {{ selected_row.email }}</p>
+            <p><strong>Department:</strong> {{ selected_row.department }}</p>
+            <p><strong>Job Title:</strong> {{ selected_row.job_title }}</p>
+            <p><strong>Date of Joining:</strong> {{ selected_row.date_of_joining }}</p>
+            <p><strong>Salary:</strong> Rs {{ selected_row.salary }}</p>
+        {% else %}
+            <p class="no-row">No row selected.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Table</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin: 0;
+        }
+
+        table {
+            width: 80%;
+            margin: auto;
+            border-color: black;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .add-button-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .add-button {
+            background-color: #2ecc71;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .add-button:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+    <h1>Table of Employee</h1>
+    <br>
+    <table>
+        <tr>
+            <th>Employee ID</th>
+            <th>Name</th>
+        </tr>
+        {% for row in rows %}
+        <tr onclick="window.location='{% url 'display_selected_row' row.id %}'" style="cursor: pointer;">
+            {% comment %} Here I used JavaScript to achieve the row click functionality  {% endcomment %}
+            <td>{{ row.emp_id }}</td>
+            <td>{{ row.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div class="add-button-container">
+        <a href="{% url 'add_row' %}" class="add-button">Add New Row</a>
+    </div>
+</body>
+</html>
